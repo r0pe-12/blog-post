@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+    const CREATED_AT = 'published_at';
+    const UPDATED_AT = null;
+
+    public function user(){
+        # code
+        return $this->belongsTo('App\Models\User');
+    }
 }
