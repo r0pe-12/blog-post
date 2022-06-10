@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (){
-    echo 'hello';
+Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+
+Route::controller(\App\Http\Controllers\PostController::class)->group(function (){
+    Route::get('/posts', 'index')->name('admin.posts.index');
+    Route::get('/posts/create', 'create')->name('admin.posts.create');
+    Route::post('/posts/create', 'store')->name('admin.posts.store');
+    Route::delete('/posts/{post}', 'destroy')->name('admin.posts.destroy');
+    Route::get('/posts/{post}/edit', 'edit')->name('admin.posts.edit');
+    Route::put('/posts/{post}/edit', 'update')->name('admin.posts.update');
 });
+
+

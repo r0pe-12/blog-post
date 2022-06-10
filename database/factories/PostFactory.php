@@ -22,8 +22,8 @@ class PostFactory extends Factory
             'slug'=>$this->faker->slug,
             'short_description'=>$this->faker->text(100),
             'content'=>$this->faker->text,
-            'picture'=>$this->faker->image,
-            'published_at'=>$this->faker->time('H:i:s'),
+            'picture'=>$this->faker->imageUrl(900, 300),
+//            'published_at'=>$this->faker->time('H:i:s'),
         ];
     }
 }

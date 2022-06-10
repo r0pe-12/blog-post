@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [\App\Http\Controllers\PostController::class, 'home'])->name('post.home');
-Route::get('/posts', [\App\Http\Controllers\PostController::class, 'showAll'])->name('post.show.all');
-Route::get('/posts/{slug}', [\App\Http\Controllers\PostController::class, 'showOne'])->name('post.show.one');
-Route::post('/contact', [\App\Http\Controllers\PostController::class, 'mail'])->name('contact.mail');
+Route::get('/', [\App\Http\Controllers\PublicController::class, 'home'])->name('post.home');
+Route::get('/posts', [\App\Http\Controllers\PublicController::class, 'showAll'])->name('post.show.all');
+Route::get('/posts/{slug}', [\App\Http\Controllers\PublicController::class, 'showOne'])->name('post.show.one');
+Route::post('/contact', [\App\Http\Controllers\PublicController::class, 'mail'])->name('contact.mail');
 
     Route::get('/about', function (){
         return view('posts.about', [
@@ -30,4 +31,3 @@ Route::post('/contact', [\App\Http\Controllers\PostController::class, 'mail'])->
     })->name('contact');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
