@@ -38,7 +38,22 @@ class PublicController extends Controller
 //    sending mail
     public function mail(Request $request){
         # code
-        dd($request->all());
+        $input = $this->validate($request, [
+            'name'=>'required',
+            'email'=>'required|email',
+            'phone'=>'required',
+            'message'=>'required'
+        ]);
+        $data = [
+            'name'=>$input['name'],
+            'title'=>'Blog-Post',
+            'content'=>$input['message'],
+            'email'=>$input['email'],
+            'phone'=>$input['phone']
+        ];
+        \Mail::send('mail', $data, function ($message) use ($data) {
+           $message->subject('Blog_Post')->from($data['email'], $data['name'])->to('r0pe@protonmail.com', 'Petar');
+        });
     }
 
 }

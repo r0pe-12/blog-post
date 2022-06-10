@@ -20,6 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'picture',
+        'about',
         'password',
     ];
 
@@ -45,5 +47,10 @@ class User extends Authenticatable
     public function posts(){
         # code
         return $this->hasMany('App\Models\Post');
+    }
+
+    public function getPictureAttribute($value){
+        # code
+        return asset('storage/' . $value);
     }
 }

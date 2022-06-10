@@ -25,4 +25,7 @@ Route::controller(\App\Http\Controllers\PostController::class)->group(function (
     Route::put('/posts/{post}/edit', 'update')->name('admin.posts.update');
 });
 
-
+Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
+    Route::get('/profile', 'index')->name('admin.user.index');
+    Route::put('/profile', 'update')->name('admin.user.update');
+});
