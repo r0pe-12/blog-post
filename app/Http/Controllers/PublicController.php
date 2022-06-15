@@ -54,6 +54,8 @@ class PublicController extends Controller
         \Mail::send('mail', $data, function ($message) use ($data) {
            $message->subject('Blog_Post')->from($data['email'], $data['name'])->to('r0pe@protonmail.com', 'Petar');
         });
+        session()->flash('mail-sent', 'Mail was sent successfully');
+        return back();
     }
 
 }
